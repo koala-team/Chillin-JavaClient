@@ -199,11 +199,11 @@ public class Core {
 
 	private void handleEndGame(EndGame endgame) {
 		String winner = (endgame.getWinnerSidename() != null) ? endgame.getWinnerSidename() : "draw";
-		Logger.log("Winner side: " + winner + "\n");
+		Logger.log("Winner side: " + winner);
 		if (!endgame.getDetails().isEmpty()) {
 			Logger.log("Details:");
 			for(String name: endgame.getDetails().keySet()) {
-				Logger.log("  " + name + ":\n");
+				Logger.log("  " + name + ":");
 				for(String side: endgame.getDetails().get(name).keySet()) {
 					Logger.log("    " + side + " -> " + endgame.getDetails().get(name).get(side));
 				}
