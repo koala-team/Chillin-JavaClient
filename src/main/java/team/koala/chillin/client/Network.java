@@ -65,7 +65,7 @@ public class Network {
 			return result;
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			// e.printStackTrace();
 		}
 		return new byte[]{};
 	}
@@ -120,7 +120,7 @@ public class Network {
 		try {
 			socket.close();
 		} catch (IOException e) {
-			e.printStackTrace();
+			// e.printStackTrace();
 		}
 	}
 }
