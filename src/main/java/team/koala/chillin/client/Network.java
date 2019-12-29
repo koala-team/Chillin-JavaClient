@@ -70,11 +70,13 @@ public class Network {
 		return new byte[]{};
 	}
 
-	public int sendData(byte[] data) {
+	public void sendData(byte[] data) {
 		int size = data.length;
 		List<Byte> result = new ArrayList<>();
-		result.addAll(b22B(ByteBuffer.allocate(Integer.BYTES).order(ByteOrder.LITTLE_ENDIAN).putInt(size).array(),
-				data));
+		result.addAll(b22B(
+			ByteBuffer.allocate(Integer.BYTES).order(ByteOrder.LITTLE_ENDIAN).putInt(size).array(),
+			data
+		));
 
 		try {
 			OutputStream os = socket.getOutputStream();
@@ -83,11 +85,8 @@ public class Network {
 			os.flush();
 
 		} catch (IOException e) {
-			return -1;
+			// e.printStackTrace();
 		}
-
-		return 1;
-
 	}
 
 	private static List<Byte> b2B(byte[] bytes) {
