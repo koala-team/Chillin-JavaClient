@@ -45,16 +45,16 @@ public class Network {
 			InputStream in = socket.getInputStream();
 			byte[] sizeByte = new byte[4];
 			in.read(sizeByte, 0, sizeByte.length);
-			int size = ByteBuffer.wrap(sizeByte).order(ByteOrder.LITTLE_ENDIAN).getChar();
+			int size = ByteBuffer.wrap(sizeByte).order(ByteOrder.LITTLE_ENDIAN).getInt();
 
 			List<Byte> rawData = new ArrayList<>();
 			while (rawData.size() < size) {
 				int chunkSize = (size - rawData.size() > 1024) ? 1024 : size - rawData.size();
 				byte[] tmp = new byte[chunkSize];
-				in.read(tmp, 0, chunkSize);
+				int actualChunkSize = in.read(tmp, 0, chunkSize);
 
-				for (byte b : tmp) {
-					rawData.add(b);
+				for (int i = 0; i < actualChunkSize; i++) {
+					rawData.add(tmp[i]);
 				}
 			}
 
